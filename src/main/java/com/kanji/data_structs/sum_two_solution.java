@@ -37,10 +37,39 @@ class sum_two_solution {
         
         //initialise the sum, left pointer and right pointer
         int sum = 0;
+        int[] results = new int[2];
         int left_pointer = 0;
-        int right_pointer = 0;
+        int right_pointer = nums.length - 1; // should start from the end of array
         
         //keep working task when the left pointer is still less than right pointer
+        
+        while(left_pointer < right_pointer) {
+            
+            //get the sum
+            sum = nums[left_pointer] + nums[right_pointer];
+            
+            // if the sum is equal to target, we return or print the positions
+            if(sum == target) {
+                
+                System.out.println(left_pointer+","+right_pointer);
+                break;
+                                
+            } else if(sum < target) { 
+                
+                //if the sum is less than target, we add one to the left pointer
+                
+                left_pointer++;
+                
+            } else {
+                
+                //if the sum is greater than target, we sub one to the right pointer
+                right_pointer--;
+                
+            }
+            
+        }
+        
+        //System.out.println(results.);
         
     }
     
@@ -48,7 +77,11 @@ class sum_two_solution {
         
         sum_two_solution sol = new sum_two_solution();
         
-        sol.twoSumBruteForce(numbers,targ);
+        //since we have two nested loops, time complexity is O(n^2), space complexity O(1)
+        //sol.twoSumBruteForce(numbers,targ);
+        
+        //time complexity is O(n log n)
+        sol.twoPointerApproach(numbers, targ);
         
     }
 }
