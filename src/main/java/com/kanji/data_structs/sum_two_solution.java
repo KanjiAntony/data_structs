@@ -1,5 +1,24 @@
 package com.kanji.data_structs;
 
+/**
+
+* Given an array of integers nums and an integer target, return indices of the two numbers such that 
+* they add up to target.
+
+* You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+* You can return the answer in any order.
+* 
+* Example 1:
+
+    Input: nums = [2,7,11,15], target = 9
+    Output: [0,1]
+    Output: Because nums[0] + nums[1] == 9, we return [0, 1].
+ 
+*/
+
+import java.util.Arrays;
+
 class sum_two_solution {
     
     static int[] numbers = {2,7,11,15};
@@ -7,7 +26,7 @@ class sum_two_solution {
     
     
     //using the brute force approach
-    public static void twoSumBruteForce(int[] nums, int target) {
+    public int[] twoSumBruteForce(int[] nums, int target) {
         
         int sum = 0;
         
@@ -19,7 +38,7 @@ class sum_two_solution {
                 
                 if (sum == target) {
                     
-                    System.out.println("Positions "+ i + " , "+ j);
+                    return new int[] {i,j};
                     
                 }
                 
@@ -28,12 +47,12 @@ class sum_two_solution {
             
         }
         
-        //return arr;
+        return null;
         
     }
     
     //using the two pointer approach
-    public void twoPointerApproach(int[] nums, int target){
+    public int[] twoPointerApproach(int[] nums, int target){
         
         //initialise the sum, left pointer and right pointer
         int sum = 0;
@@ -51,8 +70,7 @@ class sum_two_solution {
             // if the sum is equal to target, we return or print the positions
             if(sum == target) {
                 
-                System.out.println(left_pointer+","+right_pointer);
-                break;
+                return new int[] {left_pointer,right_pointer};
                                 
             } else if(sum < target) { 
                 
@@ -69,19 +87,25 @@ class sum_two_solution {
             
         }
         
-        //System.out.println(results.);
+        return null;
         
     }
     
     public static void main(String[] args) {
         
+                
         sum_two_solution sol = new sum_two_solution();
         
         //since we have two nested loops, time complexity is O(n^2), space complexity O(1)
-        //sol.twoSumBruteForce(numbers,targ);
+        
+        /*int[] print_brute_force_array = sol.twoSumBruteForce(numbers,targ);
+        
+        System.out.println(Arrays.toString(print_brute_force_array));*/
+        
         
         //time complexity is O(n log n)
-        sol.twoPointerApproach(numbers, targ);
+        int[] print_two_pointer_array = sol.twoPointerApproach(numbers,targ);
+        System.out.println(Arrays.toString(print_two_pointer_array));
         
     }
 }
